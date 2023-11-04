@@ -1,8 +1,11 @@
-# React + Vite
+# План заняття
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Питання-відповідь
+- Практичне заняття
 
-Currently, two official plugins are available:
+## Завдання
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Завдання 1 - Картка блогу](./task%231.md)
+- [Завдання 2 - Секція статистики](./task%232.md)
+- [Завдання 3 - Список Forbes](./task%233.md)
+- [Завдання 4 - Історія транзакцій](./task%234.md)
