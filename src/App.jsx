@@ -1,49 +1,35 @@
-import {
-  BlogCard,
-  Container,
-  Section,
-  Heading,
-  Statistics,
-  ForbesList,
-  CryptoHistory,
-} from './components';
-
-import article from './data/article.json';
-import data from './data/data.json';
-import forbes from './data/forbes.json';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import { Container, Header, Section, Text } from './components';
+import { Gallery, Todos } from './tabs';
 
 export const App = () => {
   return (
-    <Section>
-      <Container>
-        <Heading marginBottom="50px" textAlign="center">
-          Task 1
-        </Heading>
-        <BlogCard
-          poster={article.poster}
-          tag={article.tag}
-          avatar={article.avatar}
-          name={article.name}
-          title={article.title}
-          postedAt={article.postedAt}
-          description={article.description}
-        />
+    <>
+      <Header />
 
-        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
-          Task 2
-        </Heading>
-        <Statistics title="Main Statistics" stats={data} />
+      <Section>
+        <Container>
+          <Tabs>
+            <TabList>
+              <Tab>
+                <Text>Gallery</Text>
+              </Tab>
+              <Tab>
+                <Text>Todos</Text>
+              </Tab>
+            </TabList>
 
-        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
-          Task 3
-        </Heading>
-        <ForbesList list={forbes} />
+            <TabPanel>
+              <Gallery />
+            </TabPanel>
 
-        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
-          Task 4
-        </Heading>
-        <CryptoHistory />
-      </Container>
-    </Section>
+            <TabPanel>
+              <Todos />
+            </TabPanel>
+          </Tabs>
+        </Container>
+      </Section>
+    </>
   );
 };

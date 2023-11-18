@@ -32,7 +32,14 @@ export const globalStyles = css`
   ol {
     list-style: none;
     padding-left: 0;
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
   }
 
   button {
@@ -47,12 +54,6 @@ export const globalStyles = css`
   a {
     text-decoration: none;
     color: inherit;
-  }
-
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
   }
 
   code {
