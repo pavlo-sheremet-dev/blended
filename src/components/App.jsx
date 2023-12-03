@@ -1,17 +1,39 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+} from "react-router-dom";
 import { Layout } from "../layout/Layout/Layout";
 import { routes } from "../routes";
 import { CocktailDetail, Cocktails, Home } from "../views";
 
+const router = createBrowserRouter([
+  {
+    path: routes.HOME,
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: routes.COCKTAILS,
+        element: <Cocktails />,
+      },
+      {
+        path: routes.COCKTAIL_ID,
+        element: <CocktailDetail />,
+      },
+      {
+        path: "*",
+        element: <Navigate to={routes.HOME} />,
+      },
+    ],
+  },
+]);
+
 export const App = () => {
-  return (
-    <Routes>
-      <Route path={routes.HOME} element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path={routes.COCKTAILS} element={<Cocktails />} />
-        <Route path={routes.COCKTAIL_ID} element={<CocktailDetail />} />
-        <Route path="*" element={<Navigate to={routes.HOME} />} />
-      </Route>
-    </Routes>
-  );
+  return <RouterProvider router={router} />;
 };

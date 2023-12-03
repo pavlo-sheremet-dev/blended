@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  @keyframes showELement {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  .show__item {
+    animation-name: showELement;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+  }
+}
