@@ -1,39 +1,27 @@
-import {
-  Navigate,
-  Route,
-  RouterProvider,
-  Routes,
-  createBrowserRouter,
-} from "react-router-dom";
-import { Layout } from "../layout/Layout/Layout";
-import { routes } from "../routes";
-import { CocktailDetail, Cocktails, Home } from "../views";
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
+import Layout from './Layout/Layout';
 
-const router = createBrowserRouter([
-  {
-    path: routes.HOME,
-    element: <Layout />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: routes.COCKTAILS,
-        element: <Cocktails />,
-      },
-      {
-        path: routes.COCKTAIL_ID,
-        element: <CocktailDetail />,
-      },
-      {
-        path: "*",
-        element: <Navigate to={routes.HOME} />,
-      },
-    ],
-  },
-]);
+const Home = lazy(() => import('../pages/HomePage/HomePage'));
+const Movies = lazy(() => import('../pages/MoviesPage/MoviesPage'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies />} />
+          <Route path="movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+        </Route>
+        <Route path="*" element={<Navigate to={'/'} />}></Route>
+      </Routes>
+    </>
+  );
 };
