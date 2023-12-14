@@ -4,6 +4,18 @@ import { ForbesItem, Avatar, Name, Capital } from './ForbesListItem.styled';
 
 import { theme } from '../..//styles/index';
 
-export const ForbesListItem = () => {
-  return <div>ForbesItem</div>;
+export const ForbesListItem = ({ id, avatar, name, capital, isIncrease }) => {
+  return (
+    <div>
+      <ForbesItem key={id}>
+        <Avatar src={avatar} alt={name} />
+        <Name>{name}</Name>
+        <Capital>
+          {capital}
+          <BiDollarCircle color={theme.colors.accent} size={22} />
+          {isIncrease ? <FcBullish /> : <FcBearish />}
+        </Capital>
+      </ForbesItem>
+    </div>
+  );
 };
