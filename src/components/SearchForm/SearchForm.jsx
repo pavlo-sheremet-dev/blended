@@ -1,13 +1,18 @@
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../../redux/todos/todoSlice';
 import { FiSearch } from 'react-icons/fi';
 import { FormBtn, InputSearch, SearchFormStyled } from './SearchForm.styled';
 
-export const SearchForm = ({ addTodo }) => {
+export const SearchForm = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = e => {
     e.preventDefault();
-    const todo = {
-      text: e.target.text.value.trim(),
-    };
-    addTodo(todo);
+
+    const text = e.target.text.value.trim();
+
+    dispatch(addTodo({ text }));
+
     e.target.reset();
   };
 
