@@ -1,4 +1,11 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
+import persistReducer from 'redux-persist/es/persistReducer';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+  key: 'todos',
+  storage,
+};
 
 const todoSlice = createSlice({
   name: 'todos',
@@ -19,13 +26,13 @@ const todoSlice = createSlice({
     },
 
     deletetodo: (state, { payload }) => {
-      state.items = state.items.filter(item => item.id !== payload)
+      state.items = state.items.filter(item => item.id !== payload);
       // return {
       //   ...state, items: state.items.filter(item => item.id !== payload)
       // }
-    }
+    },
   },
 });
 
 export const { addTodo, deletetodo } = todoSlice.actions;
-export const todoReducer = todoSlice.reducer;
+export const todoReducer = persistReducer(persistConfig, todoSlice.reducer);

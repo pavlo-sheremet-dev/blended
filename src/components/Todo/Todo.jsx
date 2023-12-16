@@ -1,14 +1,13 @@
-import { useDispatch } from 'react-redux';
+import { useTodos } from '../../hooks/useTodos';
 import { Text } from '../Text/Text.styled';
 import { TodoWrapper, DeleteButton, EditButton } from './Todo.styled';
 import { RiDeleteBinLine } from 'react-icons/ri';
-import { deletetodo } from '../../redux/todos/todoSlice';
 
 export const Todo = ({ text, marker, id }) => {
-  const dispatch = useDispatch();
+  const { deleteTodo } = useTodos();
 
   const onDeleteTodo = () => {
-    dispatch(deletetodo(id));
+    deleteTodo(id);
   };
 
   return (
