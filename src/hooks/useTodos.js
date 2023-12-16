@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTodos } from '../redux/todos/selectors';
 import * as actions from '../redux/todos/todoSlice';
+import * as operations from '../redux/todos/operations';
+import { useCallback } from 'react';
 
 export const useTodos = () => {
   const dispatch = useDispatch();
@@ -14,5 +16,14 @@ export const useTodos = () => {
     dispatch(actions.deletetodo(id));
   };
 
-  return { todos, addTodo, deleteTodo };
+  const fetchTodos = useCallback(async () => {
+    try {
+      await dispatch(operations.fetchTodos()).unwrap();
+    } catch (error) {
+      alert(`${error.message}`);
+      console.log(error.message);
+    }
+  }, [dispatch]);
+
+  return { todos, addTodo, deleteTodo, fetchTodos };
 };

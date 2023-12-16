@@ -1,18 +1,30 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-import persistReducer from 'redux-persist/es/persistReducer';
-import storage from 'redux-persist/lib/storage';
+import { fetchTodos } from './operations';
 
-const persistConfig = {
-  key: 'todos',
-  storage,
+const handlePending = state => {
+  state.isLoading = true;
 };
+// const handleRejected = () => {
+//   state.isLoading = false;
+// };
 
 const todoSlice = createSlice({
   name: 'todos',
   initialState: {
     items: [],
+    error: null,
+    isLoading: false,
   },
-
+  extraReducers: builder => {
+    builder
+      .addCase(fetchTodos.pending, handlePending)
+      .addCase(fetchTodos.fulfilled, (state, { payload }) => {
+        state.items = payload;
+      })
+      .addCase(fetchTodos.rejected, (state, { error }) => {
+        state.error = error.message;
+      });
+  },
   reducers: {
     addTodo: {
       reducer: (state, { payload }) => {
@@ -35,4 +47,4 @@ const todoSlice = createSlice({
 });
 
 export const { addTodo, deletetodo } = todoSlice.actions;
-export const todoReducer = persistReducer(persistConfig, todoSlice.reducer);
+export const todoReducer = todoSlice.reducer;
