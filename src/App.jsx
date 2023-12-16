@@ -12,13 +12,10 @@ export const App = () => {
         <Container>
           <Tabs>
             <TabList>
-
               <Tab>
                 <Text>Todos</Text>
               </Tab>
             </TabList>
-
-
 
             <TabPanel>
               <Todos />
