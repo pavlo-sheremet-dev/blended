@@ -1,12 +1,12 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-import { fetchTodos } from './operations';
+import { fetchTodos, addTodo, deleteTodo } from './operations';
 
 const handlePending = state => {
   state.isLoading = true;
 };
-// const handleRejected = () => {
-//   state.isLoading = false;
-// };
+const handleRejected = state => {
+  state.isLoading = false;
+};
 
 const todoSlice = createSlice({
   name: 'todos',
@@ -18,33 +18,23 @@ const todoSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchTodos.pending, handlePending)
+      .addCase(addTodo.pending, handlePending)
+      .addCase(deleteTodo.pending, handlePending)
+      .addCase(fetchTodos.rejected, handleRejected)
+      .addCase(addTodo.rejected, handleRejected)
+      .addCase(deleteTodo.rejected, handleRejected)
       .addCase(fetchTodos.fulfilled, (state, { payload }) => {
         state.items = payload;
       })
-      .addCase(fetchTodos.rejected, (state, { error }) => {
-        state.error = error.message;
+      .addCase(addTodo.fulfilled, (state, { payload }) => {
+        state.items.push(payload);
+      })
+      .addCase(deleteTodo.fulfilled, (state, { payload }) => {
+        const index = state.items.findIndex(({ id }) => id === payload);
+        state.items.splice(index, 1);
       });
   },
-  reducers: {
-    addTodo: {
-      reducer: (state, { payload }) => {
-        state.items.push(payload);
-      },
-
-      prepare: todo => {
-        const id = nanoid();
-        return { payload: { id, ...todo } };
-      },
-    },
-
-    deletetodo: (state, { payload }) => {
-      state.items = state.items.filter(item => item.id !== payload);
-      // return {
-      //   ...state, items: state.items.filter(item => item.id !== payload)
-      // }
-    },
-  },
+  reducers: {},
 });
 
-export const { addTodo, deletetodo } = todoSlice.actions;
 export const todoReducer = todoSlice.reducer;
