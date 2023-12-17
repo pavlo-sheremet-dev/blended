@@ -1,5 +1,5 @@
 .header {
-  @apply py-4 shadow-md border-b-2 border-slate-200;
+  @apply py-8 shadow-lg border-b-2 border-slate-200;
 }
 
 .headerContainer {
@@ -7,7 +7,7 @@
 }
 
 .logo {
-  @apply text-4xl font-black text-gray-800 hover:text-gray-600 focus:text-gray-600 transition-colors;
+  @apply text-4xl font-black;
 }
 
 .navbar {
