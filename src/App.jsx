@@ -13,19 +13,17 @@ export const App = () => {
           <Tabs>
             <TabList>
               <Tab>
-                <Text>Gallery</Text>
-              </Tab>
-              <Tab>
                 <Text>Todos</Text>
               </Tab>
+              <Tab>
+                <Text>Gallery</Text>
+              </Tab>
             </TabList>
-
-            <TabPanel>
-              <Gallery />
-            </TabPanel>
-
             <TabPanel>
               <Todos />
+            </TabPanel>
+            <TabPanel>
+              <Gallery />
             </TabPanel>
           </Tabs>
         </Container>
