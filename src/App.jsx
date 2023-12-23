@@ -1,7 +1,7 @@
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { Container, Header, Section, Text } from './components';
-import { Gallery, Todos } from './tabs';
+import { Gallery, Todos, FormikTab } from './tabs';
 
 export const App = () => {
   return (
@@ -16,9 +16,15 @@ export const App = () => {
                 <Text>Todos</Text>
               </Tab>
               <Tab>
+                <Text>Formik</Text>
+              </Tab>
+              <Tab>
                 <Text>Gallery</Text>
               </Tab>
             </TabList>
+            <TabPanel>
+              <FormikTab />
+            </TabPanel>
             <TabPanel>
               <Todos />
             </TabPanel>
