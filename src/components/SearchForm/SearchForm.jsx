@@ -8,3 +8,8 @@ export class SearchForm extends Component {
     return <h2>SearchForm</h2>;
   }
 }
+
+const Add = ({ prop }) => {
+  console.log(prop);
+  return null;
+};
