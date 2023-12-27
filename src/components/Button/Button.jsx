@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import styles from "./Button.module.css";
+import { useEditCommentMutation } from "../../redux/commentApi";
 
 export const Button = ({ children, counter, role = "thumbsUp", id }) => {
   const variants = {
@@ -8,8 +9,10 @@ export const Button = ({ children, counter, role = "thumbsUp", id }) => {
     [styles.thumbsDown]: role === "thumbsDown",
   };
 
+  const [editComment] = useEditCommentMutation();
+
   const onBtnHandleClick = () => {
-    console.log("click");
+    editComment({ id, [role]: counter + 1 });
   };
 
   return (

@@ -8,11 +8,33 @@ export const commentApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
   }),
+  tagTypes: ["Comment"],
   endpoints: (builder) => ({
     getComments: builder.query({
       query: () => API_ENDPOINT,
+      providesTags: ["Comment"],
+    }),
+    addComment: builder.mutation({
+      query: (body) => ({
+        url: API_ENDPOINT,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Comment"],
+    }),
+    editComment: builder.mutation({
+      query: (comment) => ({
+        url: `${API_ENDPOINT}/${comment.id}`,
+        method: "PUT",
+        body: comment,
+      }),
+      invalidatesTags: ["Comment"],
     }),
   }),
 });
 
-export const { useGetCommentsQuery } = commentApi;
+export const {
+  useGetCommentsQuery,
+  useAddCommentMutation,
+  useEditCommentMutation,
+} = commentApi;
