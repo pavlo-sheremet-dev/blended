@@ -1,8 +1,17 @@
-# React + Vite
+# Заняття 2. План
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Kahoot
+- Питання-відповідь
+- Практичне заняття
 
-Currently, two official plugins are available:
+> Перед початком практики ознайомитись з бібліотекою
+> [react-tabs](https://www.npmjs.com/package/react-tabs), яка використовується в
+> **Basic Example** в Арр для розділення двох завдань. Також потрібно буде
+> отримати ключ з ресурсу [pexels](https://www.pexels.com/api/) - для роботи з
+> вправою Пошук зображень. В обох завданнях будемо перевикористовувати
+> компоненти `<SearchFormStyled/>` та styled-components `Grid` та `GridItem`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Завдання
+
+- [Завдання 1 - Пошук зображень](./task%231.md)
+- [Завдання 2 - TODO LIST](./task%232.md)
