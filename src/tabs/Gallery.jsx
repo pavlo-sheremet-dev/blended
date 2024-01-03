@@ -1,6 +1,6 @@
-import { Component } from 'react';
-
-import * as ImageService from '../service/image-service';
+import { useState, useEffect } from 'react';
+// import * as ImageService from '../service/image-service';
+import { getImages } from '../service/image-service';
 import {
   Button,
   SearchForm,
@@ -10,12 +10,50 @@ import {
   CardItem,
 } from '../components';
 
-export class Gallery extends Component {
-  render() {
-    return (
-      <>
-        <Text textAlign="center">Sorry. There are no images ... 😭</Text>
-      </>
-    );
-  }
-}
+export const Gallery = () => {
+  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
+  const [gallery, setGallery] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (query === '' && page === 1) return;
+    async function searchPhoto() {
+      try {
+        const images = await getImages(query, page);
+        console.log(images.photo);
+        setGallery(prev => [...prev, ...images.photo]);
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+    searchPhoto();
+  }, [query, page, error]);
+
+  const handleSubmit = query => {
+    setQuery(query);
+    setPage(1);
+    setGallery([]);
+  };
+
+  return (
+    <>
+      <SearchForm getQuery={handleSubmit} />
+
+      <Text textAlign="center">Sorry. There are no images ... 😭</Text>
+
+      <Grid>
+        {gallery.map(({ id, url, alt }) => {
+          return (
+            <GridItem key={id}>
+              <CardItem>
+                <img src={url} alt={alt} />
+              </CardItem>
+            </GridItem>
+          );
+        })}
+      </Grid>
+      <Button>Load More</Button>
+    </>
+  );
+};
