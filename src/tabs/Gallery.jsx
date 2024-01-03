@@ -35,11 +35,22 @@ export const Gallery = () => {
     setGallery([]);
   };
 
+  const handleLoadMore = () => {
+    setPage(prev => prev + 1);
+  };
+
   return (
     <>
       <SearchForm getQuery={handleSubmit} />
 
-      {gallery.length === 0 && (
+      {error && (
+        <Text textAlign="center">
+          Sorry, there was an error: <br /> {error}. <br /> Try again later ...
+          😭
+        </Text>
+      )}
+
+      {gallery.length === 0 && !error && (
         <Text textAlign="center">Sorry. There are no images ... 😭</Text>
       )}
 
@@ -56,7 +67,7 @@ export const Gallery = () => {
               );
             })}
           </Grid>
-          <Button>Load More</Button>
+          <Button onClick={handleLoadMore}>Load More</Button>
         </>
       )}
     </>
