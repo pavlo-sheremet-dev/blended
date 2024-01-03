@@ -21,8 +21,7 @@ export const Gallery = () => {
     async function searchPhoto() {
       try {
         const images = await getImages(query, page);
-        console.log(images.photo);
-        setGallery(prev => [...prev, ...images.photo]);
+        setGallery(prev => [...prev, ...images]);
       } catch (error) {
         setError(error.message);
       }
@@ -40,20 +39,26 @@ export const Gallery = () => {
     <>
       <SearchForm getQuery={handleSubmit} />
 
-      <Text textAlign="center">Sorry. There are no images ... 😭</Text>
+      {gallery.length === 0 && (
+        <Text textAlign="center">Sorry. There are no images ... 😭</Text>
+      )}
 
-      <Grid>
-        {gallery.map(({ id, url, alt }) => {
-          return (
-            <GridItem key={id}>
-              <CardItem>
-                <img src={url} alt={alt} />
-              </CardItem>
-            </GridItem>
-          );
-        })}
-      </Grid>
-      <Button>Load More</Button>
+      {gallery.length > 0 && (
+        <>
+          <Grid>
+            {gallery.map(({ id, src: { large }, alt }) => {
+              return (
+                <GridItem key={id}>
+                  <CardItem>
+                    <img src={large} alt={alt} />
+                  </CardItem>
+                </GridItem>
+              );
+            })}
+          </Grid>
+          <Button>Load More</Button>
+        </>
+      )}
     </>
   );
 };
