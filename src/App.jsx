@@ -7,18 +7,14 @@ export const App = () => {
   return (
     <>
       <Header />
-
       <Section>
         <Container>
           <Tabs>
             <TabList>
-
               <Tab>
                 <Text>Todos</Text>
               </Tab>
             </TabList>
-
-
 
             <TabPanel>
               <Todos />

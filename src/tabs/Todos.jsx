@@ -1,9 +1,8 @@
 import { Container, Grid, GridItem, SearchForm, Todo } from '../components';
-import { useSelector } from 'react-redux';
-import { selectTodos } from '../redux-store/todos/todosSelector';
+import { useTodos } from '../hooks/useTodos';
 
 export const Todos = () => {
-  const todos = useSelector(selectTodos);
+  const { todos } = useTodos();
 
   return (
     <Container>
