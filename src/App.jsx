@@ -8,6 +8,7 @@ import {
   ForbesList,
 } from './components';
 import article from './data/article.json';
+import stats from './data/stats.json'
 
 export const App = () => {
   return (
@@ -24,7 +25,7 @@ export const App = () => {
           postedAt={article.postedAt}
         />
         <Heading title="Task 2 Statistics" top bottom />
-        <Statistics title="Main Statistics" />
+        <Statistics title="Main Statistics" stats={stats}/>
 
         <Heading title="Task 3 Forbes list" top bottom />
         <ForbesList />
