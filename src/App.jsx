@@ -1,25 +1,40 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import githubLogo from "./assets/github.svg";
-import "./App.css";
-
-function App() {
+import {
+  Section,
+  Container,
+  BlogCard,
+  Heading,
+  Statistics,
+  CryptoHistory,
+  ForbesList,
+} from './components';
+import article from './data/article.json';
+import stats from './data/stats.json';
+import forbes from './data/forbes.json';
+import data from "./data/transactions.json"
+export const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-        <a href="https://docs.github.com/" target="_blank" rel="noreferrer">
-          <img src={githubLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + GitHub Pages</h1>
-    </>
-  );
-}
+    <Section>
+      <Container>
+        <Heading title="Task 1 Blog Card" bottom />
+        <BlogCard
+          poster={article.poster}
+          tag={article.tag}
+          title={article.title}
+          description={article.description}
+          name={article.name}
+          avatar={article.avatar}
+          postedAt={article.postedAt}
+        />
+        <Heading title="Task 2 Statistics" top bottom />
+        <Statistics title="Main Statistics" stats={stats} />
 
-export default App;
+        <Heading title="Task 3 Forbes list" top bottom />
+        <ForbesList list={forbes} />
+
+        <Heading title="Task 4 Crypto history" top bottom />
+        <CryptoHistory 
+        data={data}/>
+      </Container>
+    </Section>
+  );
+};
