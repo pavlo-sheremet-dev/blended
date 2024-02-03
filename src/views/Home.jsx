@@ -1,18 +1,15 @@
-import { Comments, Hero, Loader, Section } from "../components";
-import { useGetCommentsQuery } from "../redux/commentApi";
+import { Comments, Hero, Section } from "../components";
 
 export const Home = () => {
-  const { isLoading } = useGetCommentsQuery();
-  return (
-    <>
-      <Section>
-        <Hero
-          title="What people are saying."
-          subtitle="Feedback from our customers."
-        />
-        <Comments />
-      </Section>
-      {isLoading && <Loader />}
-    </>
-  );
+    return (
+        <>
+            <Section>
+                <Hero
+                    title="What people are saying."
+                    subtitle="Feedback from our customers."
+                />
+                <Comments />
+            </Section>
+        </>
+    );
 };
