@@ -1,13 +1,17 @@
 import PropTypes from "prop-types";
 import { Comment } from "../Comment/Comment";
 import { Grid } from "../Grid/Grid";
-import { comments } from "../../helpers/comments";
+import { useGetCommentsQuery } from "../../redux/commentApi";
+// import { comments } from "../../helpers/comments";
 
 export const Comments = () => {
+  const { data: comments } = useGetCommentsQuery();
+
   return (
     <Grid>
-      {comments &&
-        comments.map((comment) => <Comment key={comment.id} {...comment} />)}
+      {comments?.map((comment) => (
+        <Comment key={comment.id} {...comment} />
+      ))}
     </Grid>
   );
 };

@@ -20,9 +20,9 @@ export const Comment = ({
         <div className={styles.cardBody}>
           <h3 className={styles.author}>{author}</h3>
           <p className={styles.content}>
-            <span className={styles.blockquote}>"</span>
+            <span className={styles.blockquote}>&quot;</span>
             {content}
-            <span className={styles.blockquote}>"</span>
+            <span className={styles.blockquote}>&ldquo;</span>
           </p>
         </div>
 
