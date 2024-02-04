@@ -10,5 +10,13 @@ axios.defaults.params = {
 
 export const getPhotos = async (query, page) => {
   const { data } = await axios.get(`search?query=${query}&page=${page}`);
-  return data;
+
+  const normalizedData = data.photos.map(({ id, src, avg_color, alt }) => ({
+    id,
+    src: src.large,
+    color: avg_color,
+    alt,
+  }));
+
+  return { totalPhotos: data.total_results, photos: normalizedData };
 };

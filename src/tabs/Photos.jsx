@@ -7,7 +7,7 @@ export const Photos = () => {
   const [page, setPage] = useState(1);
   const [photos, setPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [totalResults, setTotalResults] = useState(0)
+  const [totalResults, setTotalResults] = useState(0);
 
   const handleSubmit = query => {
     setPage(1);
@@ -21,11 +21,38 @@ export const Photos = () => {
     setIsLoading(true);
     getPhotos(query, page)
       .then(data => {
-        setTotalResults(data.total_results);
+        setTotalResults(data.totalPhotos);
         setPhotos(oldPhotos => [...oldPhotos, ...data.photos]);
       })
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false));
+
+    // const asyncWrapper = async () => {
+    //   try {
+    //     setIsLoading(true);
+    //     const { totalPhotos, photos } = await getPhotos(query, page);
+    //     setTotalResults(totalPhotos);
+    //     setPhotos(oldPhotos => [...oldPhotos, ...photos]);
+    //   } catch (error) {
+    //     console.log(error);
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // };
+    // asyncWrapper();
+
+    // (async () => {
+    //   try {
+    //     setIsLoading(true);
+    //     const { totalPhotos, photos } = await getPhotos(query, page);
+    //     setTotalResults(totalPhotos);
+    //     setPhotos(oldPhotos => [...oldPhotos, ...photos]);
+    //   } catch (error) {
+    //     console.log(error);
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // })();
   }, [page, query]);
 
   const onClick = () => {
@@ -36,7 +63,9 @@ export const Photos = () => {
     <>
       <Form handleSubmit={handleSubmit} />
       <PhotosGallery photos={photos} />
-      {photos.length < totalResults && <Button onClick={onClick}>Load more...</Button>}
+      {photos.length < totalResults && (
+        <Button onClick={onClick}>Load more...</Button>
+      )}
       {isLoading && <Loader />}
     </>
   );
