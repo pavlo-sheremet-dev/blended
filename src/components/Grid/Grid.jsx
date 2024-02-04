@@ -1,3 +1,8 @@
+import styles from "./Grid.module.css"
 export const Grid = () => {
-  return <h2>Grid</h2>;
+  return (
+    <ul className={styles.list}>
+      
+      </ul>
+  );
 };
