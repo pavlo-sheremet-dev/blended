@@ -1,5 +1,6 @@
 import { FiSearch } from 'react-icons/fi';
 import style from './Form.module.css';
+
 export const Form = ({ handleSubmit }) => {
   const onSubmit = e => {
     e.preventDefault();
