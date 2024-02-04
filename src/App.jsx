@@ -1,25 +1,27 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import githubLogo from "./assets/github.svg";
-import "./App.css";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import { Section, Container } from 'components';
+import { Photos } from 'tabs/Photos';
+import { Todos } from 'tabs/Todos';
 
-function App() {
+export const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-        <a href="https://docs.github.com/" target="_blank" rel="noreferrer">
-          <img src={githubLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + GitHub Pages</h1>
-    </>
-  );
-}
+    <Section>
+      <Container>
+        <Tabs>
+          <TabList>
+            <Tab>Photos</Tab>
+            <Tab>Todos</Tab>
+          </TabList>
 
-export default App;
+          <TabPanel>
+            <Photos />
+          </TabPanel>
+          <TabPanel>
+            <Todos />
+          </TabPanel>
+        </Tabs>
+      </Container>
+    </Section>
+  );
+};

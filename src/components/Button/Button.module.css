@@ -1,0 +1,23 @@
+.button {
+  display: block;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+
+  color: var(--color-white);
+  background-color: var(--color-lightBlue);
+
+  border-radius: 8px;
+
+  padding: 15px 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow var(--animation-cubicBezier);
+}
+
+.button:hover,
+.button:focus {
+  box-shadow: var(--shadow-small);
+}
