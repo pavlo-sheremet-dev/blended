@@ -8,9 +8,11 @@ export const CocktailCard = ({
   strGlass,
   idDrink,
 }) => {
+
+  const location = useLocation();
   return (
     <li className='text-center border rounded-xl overflow-hidden shadow-md border-transparent hover:border-gray-300 cursor-pointer transition-colors'>
-      <Link to={`/cocktails/${idDrink}`}>
+      <Link state={{from: location}} to={`/cocktails/${idDrink}`}>
         <img src={strDrinkThumb} alt={strDrink} />
         <div className='px-2 py-4 flex flex-col gap-2'>
           <h2 className='text-2xl font-medium'>{strDrink}</h2>
